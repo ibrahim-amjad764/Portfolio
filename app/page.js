@@ -94,7 +94,7 @@ function PortfolioContent() {
         id="main-content"
         aria-label="Portfolio content"
       >
-        <Navbar name="PortifyAI" />
+        <Navbar name="IA." />
 
         <HeroSection data={userData} />
 

@@ -86,11 +86,11 @@ export default function Footer({ data }) {
           </div>
 
           {/* Built with line */}
-          <p className={`mt-4 text-center text-xs text-[var(--portfolio-muted)]/60
+          {/* <p className={`mt-4 text-center text-xs text-[var(--portfolio-muted)]/60
             ${isDarkDev ? 'font-mono' : ''}`}>
             Built with Next.js, Tailwind CSS & Framer Motion ·{' '}
             <span className="text-[var(--portfolio-accent)]">PortifyAI</span>
-          </p>
+          </p> */}
         </div>
       </footer>
 
