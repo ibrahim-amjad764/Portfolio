@@ -26,7 +26,7 @@ Switch templates live using the palette icon in the navbar — preference is sav
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 - **Framework:** Next.js 14 (App Router)
 - **Styling:** Tailwind CSS 3.4
@@ -164,10 +164,12 @@ NEXT_PUBLIC_SITE_URL=https://yourdomain.com
 
 ---
 
-## u License
+## License
 
 MIT — free to use, modify, and deploy for personal and commercial projects.
 
 ---
 
-<p align="center">Built with ❤️ using <strong>PortifyAI</strong></p>
+##  Author
+
+**Ibrahim Amjad** - [@ibrahim-amjad764](https://github.com/ibrahim-amjad764)
