@@ -110,7 +110,11 @@ export default function AboutSection({ data }) {
               {/* Resume download */}
               <div className="mt-8">
                 <motion.a
-                  href={data.resumeUrl}
+                  // href={data.resumeUrl}
+                  href="/𝓡𝓮𝓼𝓾𝓶𝓮.pdf"
+                  download="My-Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   download
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
