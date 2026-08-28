@@ -74,82 +74,57 @@ export const userData = {
 ---
 
 ##  Project Structure
-
-```
-portifyai/
-├── app/
-│   ├── api/contact/route.js   # Contact form API endpoint
-│   ├── globals.css            # Design system + CSS tokens
-│   ├── layout.js              # Root layout + SEO metadata
-│   └── page.js                # Main page with loading screen
-├── components/
-│   ├── Navbar.jsx             # Sticky nav with mobile overlay
-│   ├── HeroSection.jsx        # Particle bg + typewriter
-│   ├── AboutSection.jsx       # Bio + stat cards
-│   ├── SkillsSection.jsx      # Filter tabs + progress bars
-│   ├── ProjectsSection.jsx    # Card grid + modal
-│   ├── ExperienceSection.jsx  # Timeline layout
-│   ├── ContactSection.jsx     # Hook Form + Zod + API
-│   ├── Footer.jsx             # View counter + back-to-top
-│   ├── FadeInSection.jsx      # Scroll-trigger wrapper
-│   ├── TypewriterText.jsx     # Phrase cycler
-│   ├── ThemeToggle.jsx        # Dark/light toggle
-│   └── TemplateSwitcher.jsx   # Template dropdown
-├── lib/
-│   ├── data.js                # ← Edit this to personalize
-│   ├── templates.js           # Template configs
-│   └── AppContext.js          # Global state provider
-├── tailwind.config.js
-├── next.config.js
-└── package.json
 ```
 Portfolio-main/
 ├── app/
 │   ├── api/
 │   │   └── contact/
-│   │       └── route.js
+│   │       └── route.js              # Contact form API endpoint
+│   │
 │   ├── text-roll-demo/
-│   │   ├── page.tsx
-│   │   └── globals.css
-│   ├── layout.js
-│   └── page.js
+│   │   ├── page.tsx                  # Text roll demo page
+│   │   └── globals.css               # Demo page styles
+│   │
+│   ├── layout.js                     # Root layout + SEO metadata
+│   └── page.js                       # Main portfolio page
 │
 ├── components/
 │   └── ui/
-│       ├── BlurTextAnimation.tsx
-│       ├── pulse-beams.tsx
-│       ├── cursor.jsx
-│       ├── text-roll.tsx
-│       ├── AboutSection.jsx
-│       ├── ContactSection.jsx
-│       ├── ExperienceSection.jsx
-│       ├── FadeInSection.jsx
-│       ├── Footer.jsx
-│       ├── HeroSection.jsx
-│       ├── Navbar.jsx
-│       ├── PillMorphTabs.jsx
-│       ├── ProjectsSection.jsx
-│       ├── SkillsSection.jsx
-│       ├── TemplateSwitcher.jsx
-│       ├── ThemeToggle.jsx
-│       └── TypewriterText.jsx
+│       ├── BlurTextAnimation.tsx     # Blur text animation
+│       ├── pulse-beams.tsx           # Animated pulse beam effect
+│       ├── cursor.jsx                # Custom cursor
+│       ├── text-roll.tsx             # Text rolling animation
+│       │
+│       ├── AboutSection.jsx          # About / bio section
+│       ├── ContactSection.jsx        # Contact form + API integration
+│       ├── ExperienceSection.jsx     # Experience timeline
+│       ├── FadeInSection.jsx         # Scroll fade-in animation wrapper
+│       ├── Footer.jsx                # Footer + utility links
+│       ├── HeroSection.jsx           # Hero section + animations
+│       ├── Navbar.jsx                # Responsive navigation bar
+│       ├── PillMorphTabs.jsx         # Animated pill-style tabs
+│       ├── ProjectsSection.jsx       # Projects grid + project details
+│       ├── SkillsSection.jsx         # Skills + progress/filter tabs
+│       ├── TemplateSwitcher.jsx      # Portfolio template switcher
+│       ├── ThemeToggle.jsx            # Dark/light mode toggle
+│       └── TypewriterText.jsx        # Typewriter text animation
 │
 ├── lib/
-│   ├── AppContext.js
-│   ├── data.js
-│   ├── templates.js
-│   └── utils.js
+│   ├── AppContext.js                 # Global application state
+│   ├── data.js                       # ← Edit this to personalize portfolio
+│   ├── templates.js                  # Portfolio template configurations
+│   └── utils.js                      # Reusable utility functions
 │
-├── node_modules/
+├── node_modules/                     # Installed npm dependencies
 │
 ├── public/
-│   ├── favicon.svg
-│   ├── manifest.json
-│   └── Resume.pdf
+│   ├── favicon.svg                   # Website favicon
+│   ├── manifest.json                 # Web app manifest
+│   └── Resume.pdf                    # Downloadable resume
 │
-├── .gitignore
-└── next-env.d.ts
-
+├── .gitignore                        # Git ignored files/folders
+└── next-env.d.ts                     # Next.js TypeScript declarations
+```
 ---
 
 ##  Deployment
