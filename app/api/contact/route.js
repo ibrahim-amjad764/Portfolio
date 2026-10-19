@@ -4,6 +4,8 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+export const maxDuration = 30;
+
 // Simple email regex validation
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
