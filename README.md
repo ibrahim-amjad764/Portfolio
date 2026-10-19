@@ -147,30 +147,15 @@ npm start
 
 ##  Contact Form Integration
 
-The contact form POSTs to `/api/contact`. It currently logs submissions to the console. To enable real email delivery, install [Resend](https://resend.com) and update `app/api/contact/route.js`:
+The contact form POSTs to `/api/contact`, which sends messages using [Resend](https://resend.com). Configure these server-only variables in `.env.local` and in your production hosting provider:
 
-```bash
-npm install resend
-```
-
-```js
-// In route.js, replace the console.log with:
-import { Resend } from 'resend';
-const resend = new Resend(process.env.RESEND_API_KEY);
-await resend.emails.send({
-  from: 'portfolio@yourdomain.com',
-  to: 'your@email.com',
-  subject: `New message from ${sanitized.name}`,
-  text: sanitized.message,
-  replyTo: sanitized.email,
-});
-```
-
-Add your key to `.env.local`:
 ```
 RESEND_API_KEY=re_...
-NEXT_PUBLIC_SITE_URL=https://yourdomain.com
+RESEND_FROM_EMAIL="Portfolio Contact <contact@yourdomain.com>"
+CONTACT_TO_EMAIL=ibrahimamjad126@gmail.com
 ```
+
+Create a Resend API key and verify the sending domain/address used for `RESEND_FROM_EMAIL` in Resend. `CONTACT_TO_EMAIL` is the inbox that should receive submissions. Restart the dev server after changing `.env.local`. The endpoint reports an error instead of showing a false success when these settings are missing or Resend rejects the message.
 
 ---
 

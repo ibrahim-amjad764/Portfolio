@@ -1,11 +1,13 @@
 // ─── app/api/contact/route.js ───────────────────────────────────────────────
 // Next.js API route for contact form submissions.
-// In production, replace the console.log with an email service (Resend, SendGrid, etc.)
 
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
 // Simple email regex validation
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export const runtime = "nodejs";
 
 export async function POST(request) {
   try {
@@ -46,27 +48,45 @@ export async function POST(request) {
       timestamp: new Date().toISOString(),
     };
 
-    // ── Simulate processing delay (replace with real email service) ────────
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    const { RESEND_API_KEY, RESEND_FROM_EMAIL, CONTACT_TO_EMAIL } = process.env;
+    if (!RESEND_API_KEY || !RESEND_FROM_EMAIL || !CONTACT_TO_EMAIL) {
+      console.error(
+        "Contact form email is not configured. Set RESEND_API_KEY, RESEND_FROM_EMAIL, and CONTACT_TO_EMAIL.",
+      );
+      return NextResponse.json(
+        {
+          success: false,
+          message: "The contact form is temporarily unavailable. Please email me directly.",
+        },
+        { status: 503 },
+      );
+    }
 
-    // ── Log submission (replace with email send in production) ────────────
-    console.log("📧 New contact form submission:", {
-      from: sanitized.name,
-      email: sanitized.email,
-      preview: sanitized.message.substring(0, 100),
-      timestamp: sanitized.timestamp,
+    const resend = new Resend(RESEND_API_KEY);
+    const { error } = await resend.emails.send({
+      from: RESEND_FROM_EMAIL,
+      to: CONTACT_TO_EMAIL,
+      subject: `New portfolio message from ${sanitized.name.replace(/[\r\n]/g, " ")}`,
+      text: [
+        `Name: ${sanitized.name}`,
+        `Email: ${sanitized.email}`,
+        `Received: ${sanitized.timestamp}`,
+        "",
+        sanitized.message,
+      ].join("\n"),
+      replyTo: sanitized.email,
     });
 
-    // ── TODO: Integrate with email service ─────────────────────────────────
-    // Example with Resend:
-    // const resend = new Resend(process.env.RESEND_API_KEY);
-    // await resend.emails.send({
-    //   from: 'portfolio@yourdomain.com',
-    //   to: 'your@email.com',
-    //   subject: `New message from ${sanitized.name}`,
-    //   text: sanitized.message,
-    //   replyTo: sanitized.email,
-    // });
+    if (error) {
+      console.error("Resend failed to deliver contact form email:", error);
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Your message could not be sent. Please try again or email me directly.",
+        },
+        { status: 502 },
+      );
+    }
 
     return NextResponse.json(
       {
